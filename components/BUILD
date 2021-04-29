@@ -1,17 +1,29 @@
 py_library(
     name = "mcSim-cover-lib",
-    src = [
+    srcs = [
         "cover.py",
     ],
     visibility = ["//visibility:public"],
     deps = [
-        "//ecs/lib:ecs-component-lib",
+        "//ecs/lib:ecs-component",
     ],
 )
 
 py_library(
+    name = "mcSim-general-components-lib",
+    srcs = [
+        "general.py"
+    ],
+    visibility = ["//visibility:public"],
+    deps = [
+        "//ecs/lib:ecs-component",
+        "//ecs/components:ecs-value-component-lib"
+    ]
+)
+
+py_library(
     name = "mcSim-roll-bonus-lib",
-    src = [
+    srcs = [
         "rollBonus.py",
     ],
     visibility = ["//visibility:public"],
@@ -22,7 +34,7 @@ py_library(
 
 py_library(
     name = "mcSim-target-number-lib",
-    src = [
+    srcs = [
         "targetNumber.py",
     ],
     visibility = ["//visibility:public"],

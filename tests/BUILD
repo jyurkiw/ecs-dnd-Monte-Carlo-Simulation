@@ -1,0 +1,23 @@
+py_library(
+    name="report-test-lib",
+    srcs=[
+        "report_test.py"
+    ],
+    deps=[
+        "//ecs/lib:ecs-entity",
+        "//mcSim/components:mcSim-general-components-lib",
+        "//mcSim/systems:report-system-lib"
+    ]
+)
+
+py_test(
+    name="report-test",
+    size="small",
+    srcs=[
+        "report_test.py"
+    ],
+    main="report_test.py",
+    deps=[
+        ":report-test-lib",
+    ]
+)
