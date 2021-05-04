@@ -5,7 +5,18 @@ py_library(
     ],
     visibility = ["//visibility:public"],
     deps = [
-        "//ecs/lib:ecs-factory",
         "//ecs/lib:ecs-system"
+    ]
+)
+
+py_library(
+    name = "roll-system-lib",
+    srcs = [
+        "roll.py"
+    ],
+    visibility = ["//visibility:public"],
+    deps = [
+        "//ecs/lib:ecs-system",
+        "//mcSim/components:mcSim-dice-lib"
     ]
 )

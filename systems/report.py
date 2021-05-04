@@ -1,5 +1,4 @@
 from ecs.lib.system import System
-from ecs.lib.factory import Factory
 
 class ReportSystem(System):
     def __init__(self):

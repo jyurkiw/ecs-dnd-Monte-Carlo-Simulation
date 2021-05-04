@@ -10,6 +10,18 @@ py_library(
 )
 
 py_library(
+    name = "mcSim-dice-lib",
+    srcs = [
+        "dice.py"
+    ],
+    visibility = ["//visibility:public"],
+    deps=[
+        "//ecs/components:ecs-value-component-lib",
+        "//ecs/lib:ecs-component"
+    ]
+)
+
+py_library(
     name = "mcSim-general-components-lib",
     srcs = [
         "general.py"
