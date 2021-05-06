@@ -20,3 +20,15 @@ py_library(
         "//mcSim/components:mcSim-dice-lib"
     ]
 )
+
+py_library(
+    name="success-fail-system-lib",
+    srcs=[
+        "successFail.py"
+    ],
+    visibility = ["//visibility:public"],
+    deps=[
+        "//ecs/lib:ecs-system",
+        "//mcSim/components:mcSim-general-components-lib"
+    ]
+)

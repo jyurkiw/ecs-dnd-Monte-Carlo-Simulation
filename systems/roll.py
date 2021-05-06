@@ -6,7 +6,7 @@ from random import randint
 
 class RollSystem(System):
     def __init__(self):
-        super().__init__(['DieCode'])
+        super().__init__(['DieCode', 'Success'])
 
     def logic(self, entity):
         # check for an existing roll component. Abort if found.

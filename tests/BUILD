@@ -47,3 +47,30 @@ py_test(
         ":roll-test-lib",
     ]
 )
+
+py_library(
+    name="successFail-test-lib",
+    srcs=[
+        "successFail_test.py",
+    ],
+    deps=[
+        "//ecs/lib:ecs-entity",
+        "//mcSim/systems:success-fail-system-lib",
+        "//mcSim/components:mcSim-dice-lib",
+        "//mcSim/components:mcSim-roll-bonus-lib",
+        "//mcSim/components:mcSim-target-number-lib"
+    ],
+    visibility = ["//visibility:public"],
+)
+
+py_test(
+    name="successFail-test",
+    size="small",
+    srcs=[
+        "successFail_test.py"
+    ],
+    main="successFail_test.py",
+    deps=[
+        ":successFail-test-lib",
+    ]
+)
