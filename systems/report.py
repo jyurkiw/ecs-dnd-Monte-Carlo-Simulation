@@ -12,7 +12,7 @@ class ReportSystem(System):
         total = sum(self.damages)
         average = total / len(self.damages)
 
-        return "{0} (level {1}):\n\tAverage Damage: {2:+.2f}\n\tData Points: {3}".format(
+        return "{0} (caster level {1}):\n\tAverage Damage: {2:+.2f}\n\tData Points: {3}".format(
             spellName,
             casterLevel,
             average,

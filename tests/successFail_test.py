@@ -1,7 +1,8 @@
 from ecs.lib.entity import Entity
+from ecs.lib.entity_manager import EntityManager
 from mcSim.components.dice import D20Roll
 from mcSim.components.rollBonus import RollBonus
-from mcSim.systems.successFail import SuccessFail
+from mcSim.systems.successFail import SuccessFailSystem
 from mcSim.components.targetNumber import TargetNumber
 from unittest import TestCase
 import unittest
@@ -14,39 +15,45 @@ def rollD20(a, b):
     return nextRoll
 
 class TestSuccessFail(TestCase):
-    def test_successFail_tnMinus1(self):
+    def setUp(self):
+        EntityManager.clear()
+
+    def test_successFailSystem_tnMinus1(self):
         global nextRoll
         nextRoll = 4
         e = Entity()
-        e.addComponent(D20Roll())
+        with mock.patch('mcSim.components.dice.randint', rollD20):
+            e.addComponent(D20Roll())
         e.addComponent(RollBonus(0))
         e.addComponent(TargetNumber(5))
 
-        sf = SuccessFail()
+        sf = SuccessFailSystem()
         sf.run()
         self.assertTrue('Fail' in e)
 
-    def test_successFail_equalTn(self):
+    def test_successFailSystem_equalTn(self):
         global nextRoll
         nextRoll = 5
         e = Entity()
-        e.addComponent(D20Roll())
+        with mock.patch('mcSim.components.dice.randint', rollD20):
+            e.addComponent(D20Roll())
         e.addComponent(RollBonus(0))
         e.addComponent(TargetNumber(5))
 
-        sf = SuccessFail()
+        sf = SuccessFailSystem()
         sf.run()
         self.assertTrue('Success' in e)
 
-    def test_successFail_tnPlus1(self):
+    def test_successFailSystem_tnPlus1(self):
         global nextRoll
         nextRoll = 6
         e = Entity()
-        e.addComponent(D20Roll())
+        with mock.patch('mcSim.components.dice.randint', rollD20):
+            e.addComponent(D20Roll())
         e.addComponent(RollBonus(0))
         e.addComponent(TargetNumber(5))
 
-        sf = SuccessFail()
+        sf = SuccessFailSystem()
         sf.run()
         self.assertTrue('Success' in e)
 

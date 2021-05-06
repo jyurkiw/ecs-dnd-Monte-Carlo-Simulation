@@ -2,7 +2,7 @@ from ecs.lib.system import System
 from mcSim.components.general import Fail
 from mcSim.components.general import Success
 
-class SuccessFail(System):
+class SuccessFailSystem(System):
     def __init__(self):
         super().__init__(['TargetNumber', 'D20Roll', 'RollBonus'])
     

@@ -55,6 +55,7 @@ py_library(
     ],
     deps=[
         "//ecs/lib:ecs-entity",
+        "//ecs/lib:ecs-entity-manager",
         "//mcSim/systems:success-fail-system-lib",
         "//mcSim/components:mcSim-dice-lib",
         "//mcSim/components:mcSim-roll-bonus-lib",

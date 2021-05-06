@@ -54,3 +54,18 @@ py_library(
         "//ecs/components:ecs-value-component-lib",
     ],
 )
+
+py_library(
+    name = "mcSim-std-components-lib",
+    srcs = [
+        "dice.py",
+        "rollBonus.py",
+        "targetNumber.py",
+    ],
+    visibility = ["//visibility:public"],
+    deps = [
+        "//mcSim/components:mcSim-dice-lib",
+        "//mcSim/components:mcSim-roll-bonus-lib",
+        "//mcSim/components:mcSim-target-number-lib",
+    ],
+)

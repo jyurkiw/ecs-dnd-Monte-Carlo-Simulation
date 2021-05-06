@@ -22,6 +22,18 @@ py_library(
 )
 
 py_library(
+    name="summarize-system-lib",
+    srcs=[
+        "summarize.py"
+    ],
+    visibility = ["//visibility:public"],
+    deps=[
+        "//ecs/lib:ecs-system",
+        "//mcSim/components:mcSim-general-components-lib"
+    ]
+)
+
+py_library(
     name="success-fail-system-lib",
     srcs=[
         "successFail.py"
