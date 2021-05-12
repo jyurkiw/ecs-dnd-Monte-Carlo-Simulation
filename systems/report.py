@@ -1,3 +1,4 @@
+from ecs.lib.entity_manager import EntityManager
 from ecs.lib.system import System
 
 class ReportSystem(System):
@@ -12,9 +13,10 @@ class ReportSystem(System):
         total = sum(self.damages)
         average = total / len(self.damages)
 
-        return "{0} (caster level {1}):\n\tAverage Damage: {2:+.2f}\n\tData Points: {3}".format(
+        return "{0} (caster level {1}):\n\tAverage Damage: {2:.2f}\n\tData Points: {3}\n\t% Hits: {4:.2f}%".format(
             spellName,
             casterLevel,
             average,
-            len(self.damages)
+            EntityManager.count(),
+            (len(self.damages) / EntityManager.count()) * 100
         )

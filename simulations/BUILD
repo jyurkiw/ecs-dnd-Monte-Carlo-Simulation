@@ -17,8 +17,12 @@ py_library(
     deps = [
         ":simulation-lib",
         "//ecs/lib:ecs-entity",
+        "//ecs/lib:ecs-entity-manager",
+        "//mcSim/components:mcSim-cover-lib",
         "//mcSim/components:mcSim-std-components-lib",
+        "//mcSim/systems:crit-system-lib",
         "//mcSim/systems:report-system-lib",
+        "//mcSim/systems:roll-bonus-system-lib",
         "//mcSim/systems:roll-system-lib",
         "//mcSim/systems:summarize-system-lib",
         "//mcSim/systems:success-fail-system-lib",

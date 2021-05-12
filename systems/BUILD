@@ -1,11 +1,24 @@
 py_library(
+    name = "crit-system-lib",
+    srcs = [
+        "crit.py"
+    ],
+    visibility = ["//visibility:public"],
+    deps = [
+        "//ecs/lib:ecs-system",
+        "//mcSim/components:mcSim-dice-lib"
+    ]
+)
+
+py_library(
     name = "report-system-lib",
     srcs = [
         "report.py"
     ],
     visibility = ["//visibility:public"],
     deps = [
-        "//ecs/lib:ecs-system"
+        "//ecs/lib:ecs-system",
+        "//ecs/lib:ecs-entity-manager"
     ]
 )
 
@@ -42,5 +55,17 @@ py_library(
     deps=[
         "//ecs/lib:ecs-system",
         "//mcSim/components:mcSim-general-components-lib"
+    ]
+)
+
+py_library(
+    name="roll-bonus-system-lib",
+    srcs=[
+        "rollBonus.py"
+    ],
+    visibility = ["//visibility:public"],
+    deps=[
+        "//ecs/lib:ecs-system",
+        "//mcSim/components:mcSim-roll-bonus-lib",
     ]
 )

@@ -16,14 +16,4 @@ class RollSystem(System):
         dieCode = entity['DieCode']
         
         rolls = [randint(1, dieCode.numSides) for x in  range(dieCode.numDice)]
-        rerollBelowThreshold = None
-        if 'RerollBelowThreshold' in entity:
-            rerollBelowThreshold = entity['RerollBelowThreshold']
-            rolls = self.handleRerolls(rolls, dieCode.numSides, rerollBelowThreshold)
-        
         entity.addComponent(Roll(rolls))
-
-    def handleRerolls(self, rolls, numSides, rerollBelowThreshold):
-        rolls.sort()
-        rerolls = [randint(1, numSides) for x in rolls[:rerollBelowThreshold.numRerolls] if x <= rerollBelowThreshold.rerollThreshold]
-        return rerolls + rolls[len(rerolls):]

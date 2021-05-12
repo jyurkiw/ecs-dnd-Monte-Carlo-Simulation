@@ -13,5 +13,6 @@ class Simulation(ABC):
 
     def runSimulation(self):
         [entity for entity in self.entityGenerator()]
+        print('Simulation populated')
         for system in self.systems:
             system.run()
