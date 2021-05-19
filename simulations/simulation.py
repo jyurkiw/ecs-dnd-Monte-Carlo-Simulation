@@ -7,6 +7,7 @@ from mcSim.components.targetNumber import TargetNumber
 from random import choices
 
 ValueWeight = namedtuple('ValueWeight', ['value', 'weight'])
+RUNS = 100000
 
 class Simulation(ABC):
     """A base simulation framework. Cannot be instantiated.
@@ -72,6 +73,10 @@ class TargetNumberSimulation(Simulation):
                 additionalSteps(self, e)
             
             yield e
+    
+    def runSimulation(self):
+        super().runSimulation()
+        self.reportSystem.run()
 
 class AttackRollSimulation(Simulation):
     def __init__(self, runs, systems):
@@ -81,6 +86,7 @@ class AttackRollSimulation(Simulation):
         self.targetNumbers = []
         self.numSides = 0
         self.numDice = 0
+        self.additionalSteps = None
 
     def setReportSystem(self, reportSystem):
         self.reportSystem = reportSystem
@@ -98,11 +104,15 @@ class AttackRollSimulation(Simulation):
         self.numDice = numDice
         self.numSides = numSides
         return self
+
+    def setAdditionalSteps(self, additionalSteps):
+        self.additionalSteps = additionalSteps
+        return self
     
-    def entityGenerator(self, additionalSteps=None):
+    def entityGenerator(self):
         """Generate a standard entity for an attack roll simulation.
         additionalSteps is optional and has the following definition:
-            additionalSteps(Simulation, Entity)
+            additionalSteps(Entity)
             Entity is altered directly by additionalSteps.
             Return value is ignored.
         """
@@ -116,7 +126,13 @@ class AttackRollSimulation(Simulation):
             e.addComponent(TargetNumber(choices(targets, weights)[0]))
             e.addComponent(DieCode(self.numDice, self.numSides))
 
-            if additionalSteps:
-                additionalSteps(self, e)
+            if self.additionalSteps:
+                self.additionalSteps(e)
             
             yield e
+    
+    def runSimulation(self):
+        print('running sim')
+        super().runSimulation()
+        print('Running report system...')
+        self.reportSystem.run()

@@ -1,5 +1,6 @@
 from ecs.lib.entity_manager import EntityManager
 from ecs.lib.system import System
+from uuid import uuid1
 
 class ReportSystem(System):
     def __init__(self):
@@ -20,3 +21,27 @@ class ReportSystem(System):
             EntityManager.count(),
             (len(self.damages) / EntityManager.count()) * 100
         )
+
+class CassandraReportSystem(System):
+    def __init__(self, spellName, casterLevel, rolls):
+        super().__init__(['DamageTotal', 'Complete'])
+        self.numDamages = 0
+        self.totalDamage = 0
+        self.spellName = spellName
+        self.casterLevel = casterLevel
+        self.rolls = rolls
+
+    def logic(self, entity):
+        self.numDamages += 1
+        self.totalDamage += entity['DamageTotal'].value
+
+    def makeReport(self):
+        reportId = str(uuid1())
+        return {
+            'reportId': reportId,
+            'spellName': self.spellName,
+            'casterLevel': self.casterLevel,
+            'rolls': self.rolls,
+            'numDamages': self.numDamages,
+            'totalDamage': self.totalDamage
+        }
