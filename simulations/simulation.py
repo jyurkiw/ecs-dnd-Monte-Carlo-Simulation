@@ -35,6 +35,7 @@ class TargetNumberSimulation(Simulation):
         self.targetNumber = 0
         self.numSides = 0
         self.numDice = 0
+        self.damageBonus = 0
 
     def setReportSystem(self, reportSystem):
         self.reportSystem = reportSystem
@@ -48,9 +49,10 @@ class TargetNumberSimulation(Simulation):
         self.targetNumber = targetNumber
         return self
 
-    def setDieCode(self, numDice, numSides):
+    def setDieCode(self, numDice, numSides, bonus=0):
         self.numDice = numDice
         self.numSides = numSides
+        self.damageBonus = bonus
         return self
     
     def entityGenerator(self, additionalSteps=None):
@@ -68,7 +70,7 @@ class TargetNumberSimulation(Simulation):
             e.addComponent(D20Roll())
             e.addComponent(RollBonus(choices(bonuses, weights)[0]))
             e.addComponent(TargetNumber(self.targetNumber))
-            e.addComponent(DieCode(self.numDice, self.numSides))
+            e.addComponent(DieCode(self.numDice, self.numSides, self.damageBonus))
 
             if additionalSteps:
                 additionalSteps(self, e)
@@ -87,6 +89,7 @@ class AttackRollSimulation(Simulation):
         self.targetNumbers = []
         self.numSides = 0
         self.numDice = 0
+        self.damageBonus = 0
         self.additionalSteps = None
 
     def setReportSystem(self, reportSystem):
@@ -101,9 +104,10 @@ class AttackRollSimulation(Simulation):
         self.targetNumbers.append(ValueWeight(targetNumber, weight))
         return self
 
-    def setDieCode(self, numDice, numSides):
+    def setDieCode(self, numDice, numSides, bonus=0):
         self.numDice = numDice
         self.numSides = numSides
+        self.damageBonus = bonus
         return self
 
     def setAdditionalSteps(self, additionalSteps):
@@ -125,7 +129,7 @@ class AttackRollSimulation(Simulation):
             e.addComponent(D20Roll())
             e.addComponent(RollBonus(self.rollBonus))
             e.addComponent(TargetNumber(choices(targets, weights)[0]))
-            e.addComponent(DieCode(self.numDice, self.numSides))
+            e.addComponent(DieCode(self.numDice, self.numSides, self.damageBonus))
 
             if self.additionalSteps:
                 self.additionalSteps(e)

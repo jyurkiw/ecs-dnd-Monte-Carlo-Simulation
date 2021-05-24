@@ -18,6 +18,8 @@ class DieCode(Component):
         self.numDice = numDice
         self.numSides = numSides
         self.bonus = bonus
+    def __str__(self):
+        return '{0}d{1}+{2}'.format(self.numDice, self.numSides, self.bonus)
 
 class RerollBelowThreshold(Component):
     def __init__(self, numRerolls, rerollThreshold):

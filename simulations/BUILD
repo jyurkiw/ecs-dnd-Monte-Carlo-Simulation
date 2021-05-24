@@ -9,9 +9,9 @@ py_library(
 )
 
 py_library(
-    name = "MagneticSling-lib",
+    name = "crystal-hammer-lib",
     srcs = [
-        "MagneticSling.py"
+        "crystalhammer.py"
     ],
     visibility = ["//visibility:public"],
     deps = [
@@ -32,13 +32,47 @@ py_library(
 )
 
 py_binary(
-    name = "MagneticSling-sim",
+    name = "crystal-hammer-sim",
     srcs = [
-        "MagneticSling.py"
+        "crystalhammer.py"
     ],
-    main = "MagneticSling.py",
+    main = "crystalhammer.py",
     deps = [
-        ":MagneticSling-lib"
+        ":crystal-hammer-lib"
+    ]
+)
+
+py_library(
+    name = "firebolt-lib",
+    srcs = [
+        "firebolt.py"
+    ],
+    visibility = ["//visibility:public"],
+    deps = [
+        ":simulation-lib",
+        "//ecs/lib:ecs-entity",
+        "//ecs/lib:ecs-entity-manager",
+        "//mcSim/components:mcSim-cover-lib",
+        "//mcSim/components:mcSim-std-components-lib",
+        "//mcSim/data:stat-data-lib",
+        "//mcSim/systems:cassandra-report-system-lib",
+        "//mcSim/systems:crit-system-lib",
+        "//mcSim/systems:roll-bonus-system-lib",
+        "//mcSim/systems:roll-system-lib",
+        "//mcSim/systems:summarize-system-lib",
+        "//mcSim/systems:success-fail-system-lib",
+        "//mcSim/util:report-writer-lib"
+    ]
+)
+
+py_binary(
+    name = "firebolt-sim",
+    srcs = [
+        "firebolt.py"
+    ],
+    main = "firebolt.py",
+    deps = [
+        ":firebolt-lib"
     ]
 )
 

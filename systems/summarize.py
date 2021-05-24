@@ -3,9 +3,10 @@ from mcSim.components.general import Complete, DamageTotal
 
 class SummarizeSystem(System):
     def __init__(self):
-        super().__init__(['Success', 'Roll'])
+        super().__init__(['Success', 'Roll', 'DieCode'])
 
     def logic(self, entity):
         roll = entity['Roll'].value
-        entity.addComponent(DamageTotal(sum(roll)))
+        damageBonus = entity['DieCode'].bonus
+        entity.addComponent(DamageTotal(sum(roll) + damageBonus))
         entity.addComponent(Complete())
