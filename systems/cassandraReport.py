@@ -37,7 +37,7 @@ class CassandraReportSystem(System):
             The operationDict is a dictionary provided by the report system for the
                 aggregation functions to store data between entities.
            Report functions need to satisfy the following function signature:
-            def reportFunctionName(damageTotal, hits, runs, operationDict) -> AggregatorValue
+            def reportFunctionName(damageTotal, hits, runs, operationDict) -> [AggregatorValue]
         """
         self.dataAggregators.append(aggregatorFunction)
         self.reportFieldFunctions.append(reportFunction)
@@ -58,8 +58,9 @@ class CassandraReportSystem(System):
         self.addReportField('averageDamagePerCast', str(self.damageTotal / EntityManager.count()))
 
         for reporter in self.reportFieldFunctions:
-            field = reporter(self.damageTotal, self.hits, EntityManager.count(), self.aggregateOpData)
-            self.addReportField(field.name, field.value)
+            fields = reporter(self.damageTotal, self.hits, EntityManager.count(), self.aggregateOpData)
+            for field in fields:
+                self.addReportField(field.name, field.value)
 
         # connect to cassandra cluster and insert report data
         cluster = Cluster()

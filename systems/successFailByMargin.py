@@ -31,4 +31,7 @@ def aggregateSuccesFailByMargin(entity, operationDict):
         operationDict['successByMargin'] = operationDict.get('successByMargin', 0) + 1
 
 def reportSuccessFailByMargine(damageTotal, hits, runs, operationDict):
-    return AggregatorValue('successByMargin', operationDict.get('successByMargin', 0))
+    return [
+        AggregatorValue('successByMargin', operationDict.get('successByMargin', 0)),
+        AggregatorValue('marginSuccessRate', operationDict.get('successByMargin', 0) / runs)
+        ]
