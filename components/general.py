@@ -10,3 +10,4 @@ class MarginFail(Component): pass
 
 # Value Components
 class DamageTotal(ValueComponent): pass
+class PreRerollDamageTotal(ValueComponent): pass

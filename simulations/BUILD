@@ -9,9 +9,9 @@ py_library(
 )
 
 py_library(
-    name = "firebolt-lib",
+    name = "MagneticSling-lib",
     srcs = [
-        "firebolt.py"
+        "MagneticSling.py"
     ],
     visibility = ["//visibility:public"],
     deps = [
@@ -32,13 +32,13 @@ py_library(
 )
 
 py_binary(
-    name = "firebolt-sim",
+    name = "MagneticSling-sim",
     srcs = [
-        "firebolt.py"
+        "MagneticSling.py"
     ],
-    main = "firebolt.py",
+    main = "MagneticSling.py",
     deps = [
-        ":firebolt-lib"
+        ":MagneticSling-lib"
     ]
 )
 
@@ -73,6 +73,41 @@ py_binary(
     main = "frostbite.py",
     deps = [
         ":frostbite-lib"
+    ]
+)
+
+py_library(
+    name = "magnetic-sling-lib",
+    srcs = [
+        "magneticSling.py"
+    ],
+    visibility = ["//visibility:public"],
+    deps = [
+        ":simulation-lib",
+        "//ecs/lib:ecs-entity",
+        "//ecs/lib:ecs-entity-manager",
+        "//mcSim/components:mcSim-cover-lib",
+        "//mcSim/components:mcSim-std-components-lib",
+        "//mcSim/data:stat-data-lib",
+        "//mcSim/systems:cassandra-report-system-lib",
+        "//mcSim/systems:crit-system-lib",
+        "//mcSim/systems:roll-bonus-system-lib",
+        "//mcSim/systems:roll-system-lib",
+        "//mcSim/systems:summarize-system-lib",
+        "//mcSim/systems:success-fail-system-lib",
+        "//mcSim/systems:threshold-reroll-system-lib",
+        "//mcSim/util:report-writer-lib"
+    ]
+)
+
+py_binary(
+    name = "magnetic-sling-sim",
+    srcs = [
+        "magneticSling.py"
+    ],
+    main = "magneticSling.py",
+    deps = [
+        ":magnetic-sling-lib"
     ]
 )
 

@@ -94,3 +94,16 @@ py_library(
         "//mcSim/components:mcSim-roll-bonus-lib",
     ]
 )
+
+py_library(
+    name="threshold-reroll-system-lib",
+    srcs=[
+        "thresholdReroll.py"
+    ],
+    visibility = ["//visibility:public"],
+    deps=[
+        "//ecs/lib:ecs-system",
+        "//mcSim/components:mcSim-roll-bonus-lib",
+        "//mcSim/util:tuples-lib"
+    ]
+)

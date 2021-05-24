@@ -1,5 +1,4 @@
 from ecs.lib.system import System
-from mcSim.components.dice import D20Roll
 
 class CritSystem(System):
     def __init__(self, margin=0, multiplier=2, extraDice=0):
@@ -14,5 +13,3 @@ class CritSystem(System):
         if roll >= 20 - self.margin:
             entity['DieCode'].numDice *= self.multiplier
             entity['DieCode'].numDice += self.extraDice
-
-            

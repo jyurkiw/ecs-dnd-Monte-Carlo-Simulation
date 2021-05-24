@@ -8,9 +8,10 @@ from mcSim.systems.roll import RollSystem
 from mcSim.systems.rollBonus import HalfCoverSystem, ThreeQuartersCoverSystem
 from mcSim.systems.successFail import SuccessFailSystem
 from mcSim.systems.summarize import SummarizeSystem
+from mcSim.systems.thresholdReroll import ThresholdRerollSystem, aggregatePreRerollDamage, reportPreRerollDamage
 from random import choices
 
-class FireboltSimulation(AttackRollSimulation):
+class MagneticSlingSimulation(AttackRollSimulation):
     def __init__(self, reportSystem):
         self.coverValues = [NoCover(), HalfCover(), ThreeQuartersCover()]
         self.coverWeights = [5, 3, 2]
@@ -21,6 +22,7 @@ class FireboltSimulation(AttackRollSimulation):
             ThreeQuartersCoverSystem(),
             CritSystem(),
             RollSystem(),
+            ThresholdRerollSystem(3),
             SummarizeSystem()
         ])
         self.setReportSystem(reportSystem)
@@ -29,43 +31,47 @@ class FireboltSimulation(AttackRollSimulation):
     def addCoverToEntity(self, entity):
         entity.addComponent(choices(self.coverValues, self.coverWeights)[0])
 
-class Firebolt_3rdLevel(FireboltSimulation):
+class MagneticSling_3rdLevel(MagneticSlingSimulation):
     def __init__(self):
         super().__init__(CassandraReportSystem())
-        self.setRollBonus(5).setDieCode(1, 10)
+        self.setRollBonus(5).setDieCode(1, 6)
         ArmorClassData.loadLevel3(self)
 
-class Firebolt_5thLevel(FireboltSimulation):
+class MagneticSling_5thLevel(MagneticSlingSimulation):
     def __init__(self):
         super().__init__(CassandraReportSystem())
-        self.setRollBonus(7).setDieCode(2, 10)
+        self.setRollBonus(7).setDieCode(2, 6)
         ArmorClassData.loadLevel5(self)
 
-class Firebolt_11thLevel(FireboltSimulation):
+class MagneticSling_11thLevel(MagneticSlingSimulation):
     def __init__(self):
         super().__init__(CassandraReportSystem())
-        self.setRollBonus(10).setDieCode(3, 10)
+        self.setRollBonus(10).setDieCode(3, 6)
         ArmorClassData.loadLevel11(self)
 
-class Firebolt_17thLevel(FireboltSimulation):
+class MagneticSling_17thLevel(MagneticSlingSimulation):
     def __init__(self):
         super().__init__(CassandraReportSystem())
-        self.setRollBonus(13).setDieCode(4, 10)
+        self.setRollBonus(13).setDieCode(4, 6)
         ArmorClassData.loadLevel17(self)
 
 def main():
     for test, level in [
-                (Firebolt_3rdLevel(), 3),
-                (Firebolt_5thLevel(), 5),
-                (Firebolt_11thLevel(), 11),
-                (Firebolt_17thLevel(), 17)
+                (MagneticSling_3rdLevel(), 3),
+                (MagneticSling_5thLevel(), 5),
+                (MagneticSling_11thLevel(), 11),
+                (MagneticSling_17thLevel(), 17)
                 ]:
+        test.reportSystem.addDataAggregator(
+            aggregatePreRerollDamage,
+            reportPreRerollDamage
+        )
         test.runSimulation()
-        test.reportSystem.addStandardFields('Firebolt', 'cantrip', level)
+        test.reportSystem.addStandardFields('Magnetic Sling', 'cantrip', level)
         test.reportSystem.genReport()
+
         EntityManager.clear()
 
 if __name__ == '__main__':
     from mcSim.util.writer import writeReport
-    writeReport(main())
-    
+    main()
