@@ -25,6 +25,7 @@ class Simulation(ABC):
         print('Simulation populated')
         for system in self.systems:
             system.run()
+        print('Simulation complete')
 
 class TargetNumberSimulation(Simulation):
     def __init__(self, runs, systems):

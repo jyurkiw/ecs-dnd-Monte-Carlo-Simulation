@@ -90,11 +90,12 @@ py_library(
         "//mcSim/components:mcSim-std-components-lib",
         "//mcSim/data:stat-data-lib",
         "//mcSim/systems:crit-system-lib",
-        "//mcSim/systems:report-system-lib",
+        "//mcSim/systems:cassandra-report-system-lib",
         "//mcSim/systems:roll-bonus-system-lib",
         "//mcSim/systems:roll-system-lib",
         "//mcSim/systems:summarize-system-lib",
         "//mcSim/systems:success-fail-system-lib",
+        "//mcSim/systems:success-fail-by-margin-system-lib",
         "//mcSim/util:report-writer-lib"
     ]
 )

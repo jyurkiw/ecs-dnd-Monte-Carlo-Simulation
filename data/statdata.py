@@ -102,7 +102,6 @@ class DexterityData(object):
 
     @staticmethod
     def loadLevel11(simulation):
-        print('here')
         (simulation.addRollBonus(-3, 1)
             .addRollBonus(-2, 2)
             .addRollBonus(-1, 6)

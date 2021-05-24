@@ -1,4 +1,16 @@
 py_library(
+    name = "cassandra-report-system-lib",
+    srcs = [
+        "cassandraReport.py"
+    ],
+    visibility = ["//visibility:public"],
+    deps = [
+        "//ecs/lib:ecs-system",
+        "//ecs/lib:ecs-entity-manager"
+    ]
+)
+
+py_library(
     name = "crit-system-lib",
     srcs = [
         "crit.py"
@@ -55,6 +67,19 @@ py_library(
     deps=[
         "//ecs/lib:ecs-system",
         "//mcSim/components:mcSim-general-components-lib"
+    ]
+)
+
+py_library(
+    name="success-fail-by-margin-system-lib",
+    srcs=[
+        "successFailByMargin.py"
+    ],
+    visibility = ["//visibility:public"],
+    deps=[
+        "//ecs/lib:ecs-system",
+        "//mcSim/components:mcSim-general-components-lib",
+        "//mcSim/util:tuples-lib"
     ]
 )
 
