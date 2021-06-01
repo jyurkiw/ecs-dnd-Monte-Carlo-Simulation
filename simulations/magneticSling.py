@@ -3,7 +3,7 @@ from mcSim.components.cover import NoCover, HalfCover, ThreeQuartersCover
 from mcSim.data.statdata import ArmorClassData
 from mcSim.simulations.simulation import AttackRollSimulation, RUNS
 from mcSim.systems.crit import CritSystem
-from mcSim.systems.cassandraReport import CassandraReportSystem
+from mcSim.systems.cassandraReport import ApiReportSystem
 from mcSim.systems.roll import RollSystem
 from mcSim.systems.rollBonus import HalfCoverSystem, ThreeQuartersCoverSystem
 from mcSim.systems.successFail import SuccessFailSystem
@@ -33,25 +33,25 @@ class MagneticSlingSimulation(AttackRollSimulation):
 
 class MagneticSling_3rdLevel(MagneticSlingSimulation):
     def __init__(self):
-        super().__init__(CassandraReportSystem())
+        super().__init__(ApiReportSystem())
         self.setRollBonus(5).setDieCode(1, 6)
         ArmorClassData.loadLevel3(self)
 
 class MagneticSling_5thLevel(MagneticSlingSimulation):
     def __init__(self):
-        super().__init__(CassandraReportSystem())
+        super().__init__(ApiReportSystem())
         self.setRollBonus(7).setDieCode(2, 6)
         ArmorClassData.loadLevel5(self)
 
 class MagneticSling_11thLevel(MagneticSlingSimulation):
     def __init__(self):
-        super().__init__(CassandraReportSystem())
+        super().__init__(ApiReportSystem())
         self.setRollBonus(10).setDieCode(3, 6)
         ArmorClassData.loadLevel11(self)
 
 class MagneticSling_17thLevel(MagneticSlingSimulation):
     def __init__(self):
-        super().__init__(CassandraReportSystem())
+        super().__init__(ApiReportSystem())
         self.setRollBonus(13).setDieCode(4, 6)
         ArmorClassData.loadLevel17(self)
 

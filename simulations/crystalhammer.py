@@ -3,7 +3,7 @@ from mcSim.components.cover import NoCover, HalfCover, ThreeQuartersCover
 from mcSim.data.statdata import ArmorClassData
 from mcSim.simulations.simulation import AttackRollSimulation, RUNS
 from mcSim.systems.crit import CritSystem
-from mcSim.systems.cassandraReport import CassandraReportSystem
+from mcSim.systems.cassandraReport import ApiReportSystem
 from mcSim.systems.roll import RollSystem
 from mcSim.systems.rollBonus import HalfCoverSystem, ThreeQuartersCoverSystem
 from mcSim.systems.successFail import SuccessFailSystem
@@ -31,25 +31,25 @@ class CrystalHammerSimulation(AttackRollSimulation):
 
 class CrystalHammer_3rdLevel(CrystalHammerSimulation):
     def __init__(self):
-        super().__init__(CassandraReportSystem())
+        super().__init__(ApiReportSystem())
         self.setRollBonus(5).setDieCode(0, 4, 3)
         ArmorClassData.loadLevel3(self)
 
 class CrystalHammer_5thLevel(CrystalHammerSimulation):
     def __init__(self):
-        super().__init__(CassandraReportSystem())
+        super().__init__(ApiReportSystem())
         self.setRollBonus(7).setDieCode(1, 4, 4)
         ArmorClassData.loadLevel5(self)
 
 class CrystalHammer_11thLevel(CrystalHammerSimulation):
     def __init__(self):
-        super().__init__(CassandraReportSystem())
+        super().__init__(ApiReportSystem())
         self.setRollBonus(10).setDieCode(2, 4, 5)
         ArmorClassData.loadLevel11(self)
 
 class CrystalHammer_17thLevel(CrystalHammerSimulation):
     def __init__(self):
-        super().__init__(CassandraReportSystem())
+        super().__init__(ApiReportSystem())
         self.setRollBonus(13).setDieCode(3, 4, 5)
         ArmorClassData.loadLevel17(self)
 

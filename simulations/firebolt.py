@@ -3,7 +3,7 @@ from mcSim.components.cover import NoCover, HalfCover, ThreeQuartersCover
 from mcSim.data.statdata import ArmorClassData
 from mcSim.simulations.simulation import AttackRollSimulation, RUNS
 from mcSim.systems.crit import CritSystem
-from mcSim.systems.cassandraReport import CassandraReportSystem
+from mcSim.systems.cassandraReport import ApiReportSystem
 from mcSim.systems.roll import RollSystem
 from mcSim.systems.rollBonus import HalfCoverSystem, ThreeQuartersCoverSystem
 from mcSim.systems.successFail import SuccessFailSystem
@@ -31,25 +31,25 @@ class FireboltSimulation(AttackRollSimulation):
 
 class Firebolt_3rdLevel(FireboltSimulation):
     def __init__(self):
-        super().__init__(CassandraReportSystem())
+        super().__init__(ApiReportSystem())
         self.setRollBonus(5).setDieCode(1, 10)
         ArmorClassData.loadLevel3(self)
 
 class Firebolt_5thLevel(FireboltSimulation):
     def __init__(self):
-        super().__init__(CassandraReportSystem())
+        super().__init__(ApiReportSystem())
         self.setRollBonus(7).setDieCode(2, 10)
         ArmorClassData.loadLevel5(self)
 
 class Firebolt_11thLevel(FireboltSimulation):
     def __init__(self):
-        super().__init__(CassandraReportSystem())
+        super().__init__(ApiReportSystem())
         self.setRollBonus(10).setDieCode(3, 10)
         ArmorClassData.loadLevel11(self)
 
 class Firebolt_17thLevel(FireboltSimulation):
     def __init__(self):
-        super().__init__(CassandraReportSystem())
+        super().__init__(ApiReportSystem())
         self.setRollBonus(13).setDieCode(4, 10)
         ArmorClassData.loadLevel17(self)
 
