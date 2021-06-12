@@ -1,11 +1,7 @@
-from cassandra.cluster import Cluster
 from ecs.lib.entity_manager import EntityManager
 from ecs.lib.system import System
+from simrunner.app.lib.api import send_report
 from uuid import uuid1
-
-CREATE_KEYSPACE = "create keyspace if not exists simulations with replication = {'class': 'SimpleStrategy', 'replication_factor': 1};"
-CREATE_SIMULATIONS_TABLE = "create table if not exists simulations.reports(id uuid, spellName text, casterLevel int, reportdata map<text, text>, primary key ((spellName, casterLevel), id));"
-INSERT_REPORT = "insert into reports(id, spellName, casterLevel, reportdata) values (?, ?, ?, ?);"
 
 class CassandraReportSystem(System):
     def __init__(self):
@@ -62,19 +58,5 @@ class CassandraReportSystem(System):
             for field in fields:
                 self.addReportField(field.name, field.value)
 
-        # connect to cassandra cluster and insert report data
-        cluster = Cluster()
-        session = cluster.connect()
-        
-        # make sure we have a keyspace and connect to simulations
-        session.execute(CREATE_KEYSPACE)
-        session = cluster.connect('simulations')
-
-        # make sure we have a table
-        session.execute(CREATE_SIMULATIONS_TABLE)
-
-        # prepare our insert statement
-        insertStmt = session.prepare(INSERT_REPORT)
-
-        # insert the report
-        session.execute(insertStmt, (self.id, self.spellName, self.casterLevel, self.reportData))
+        # send the report to the api
+        send_report(self.spellName, self.casterLevel, self.reportData)
