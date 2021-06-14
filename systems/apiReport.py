@@ -4,6 +4,7 @@ import requests
 
 class ApiReportSystem(System):
     def __init__(self):
+        super().__init__(['DamageTotal', 'Complete'])
         self.damageTotal = 0
         self.hits = 0
         self.spellName = None
