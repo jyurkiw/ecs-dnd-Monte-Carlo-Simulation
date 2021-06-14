@@ -1,7 +1,7 @@
 from ecs.lib.entity import EntityManager
 from mcSim.data.statdata import DexterityData
 from mcSim.simulations.simulation import TargetNumberSimulation, RUNS
-from mcSim.systems.cassandraReport import ApiReportSystem
+from mcSim.systems.apiReport import ApiReportSystem
 from mcSim.systems.roll import RollSystem
 from mcSim.systems.successFail import SuccessFailSystem
 from mcSim.systems.successFailByMargin import SuccessFailByMarginSystem, aggregateSuccesFailByMargin, reportSuccessFailByMargine

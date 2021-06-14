@@ -3,7 +3,7 @@ from mcSim.components.cover import NoCover, HalfCover, ThreeQuartersCover
 from mcSim.data.statdata import ArmorClassData
 from mcSim.simulations.simulation import AttackRollSimulation, RUNS
 from mcSim.systems.crit import CritSystem
-from mcSim.systems.cassandraReport import ApiReportSystem
+from mcSim.systems.apiReport import ApiReportSystem
 from mcSim.systems.roll import RollSystem
 from mcSim.systems.rollBonus import HalfCoverSystem, ThreeQuartersCoverSystem
 from mcSim.systems.successFail import SuccessFailSystem
