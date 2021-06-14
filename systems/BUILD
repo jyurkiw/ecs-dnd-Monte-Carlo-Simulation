@@ -6,7 +6,8 @@ py_library(
     visibility = ["//visibility:public"],
     deps = [
         "//ecs/lib:ecs-system",
-        "//ecs/lib:ecs-entity-manager"
+        "//ecs/lib:ecs-entity-manager",
+        "//simrunner/app/lib:api_lib"
     ]
 )
 
