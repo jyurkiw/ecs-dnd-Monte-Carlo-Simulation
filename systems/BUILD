@@ -12,6 +12,19 @@ py_library(
 )
 
 py_library(
+    name = "api-report-system-lib",
+    srcs = [
+        "apiReport.py"
+    ],
+    visibility = ["//visibility:public"],
+    deps = [
+        "//ecs/lib:ecs-system",
+        "//ecs/lib:ecs-entity-manager",
+        "//simrunner/app/lib:api_lib"
+    ]
+)
+
+py_library(
     name = "crit-system-lib",
     srcs = [
         "crit.py"
