@@ -1,17 +1,17 @@
 py_library(
     name = "simulation-lib",
     srcs = [
-        "simulation.py"
+        "simulation.py",
     ],
     visibility = ["//visibility:public"],
     deps = [
-    ]
+    ],
 )
 
 py_library(
     name = "crystal-hammer-lib",
     srcs = [
-        "crystalhammer.py"
+        "crystalhammer.py",
     ],
     visibility = ["//visibility:public"],
     deps = [
@@ -25,27 +25,27 @@ py_library(
         "//mcSim/systems:crit-system-lib",
         "//mcSim/systems:roll-bonus-system-lib",
         "//mcSim/systems:roll-system-lib",
-        "//mcSim/systems:summarize-system-lib",
         "//mcSim/systems:success-fail-system-lib",
-        "//mcSim/util:report-writer-lib"
-    ]
+        "//mcSim/systems:summarize-system-lib",
+        "//mcSim/util:report-writer-lib",
+    ],
 )
 
 py_binary(
     name = "crystal-hammer-sim",
     srcs = [
-        "crystalhammer.py"
+        "crystalhammer.py",
     ],
     main = "crystalhammer.py",
     deps = [
-        ":crystal-hammer-lib"
-    ]
+        ":crystal-hammer-lib",
+    ],
 )
 
 py_library(
     name = "firebolt-lib",
     srcs = [
-        "firebolt.py"
+        "firebolt.py",
     ],
     visibility = ["//visibility:public"],
     deps = [
@@ -59,27 +59,27 @@ py_library(
         "//mcSim/systems:crit-system-lib",
         "//mcSim/systems:roll-bonus-system-lib",
         "//mcSim/systems:roll-system-lib",
-        "//mcSim/systems:summarize-system-lib",
         "//mcSim/systems:success-fail-system-lib",
-        "//mcSim/util:report-writer-lib"
-    ]
+        "//mcSim/systems:summarize-system-lib",
+        "//mcSim/util:report-writer-lib",
+    ],
 )
 
 py_binary(
     name = "firebolt-sim",
     srcs = [
-        "firebolt.py"
+        "firebolt.py",
     ],
     main = "firebolt.py",
     deps = [
-        ":firebolt-lib"
-    ]
+        ":firebolt-lib",
+    ],
 )
 
 py_library(
     name = "frostbite-lib",
     srcs = [
-        "frostbite.py"
+        "frostbite.py",
     ],
     visibility = ["//visibility:public"],
     deps = [
@@ -93,27 +93,27 @@ py_library(
         "//mcSim/systems:crit-system-lib",
         "//mcSim/systems:roll-bonus-system-lib",
         "//mcSim/systems:roll-system-lib",
-        "//mcSim/systems:summarize-system-lib",
         "//mcSim/systems:success-fail-system-lib",
-        "//mcSim/util:report-writer-lib"
-    ]
+        "//mcSim/systems:summarize-system-lib",
+        "//mcSim/util:report-writer-lib",
+    ],
 )
 
 py_binary(
     name = "frostbite-sim",
     srcs = [
-        "frostbite.py"
+        "frostbite.py",
     ],
     main = "frostbite.py",
     deps = [
-        ":frostbite-lib"
-    ]
+        ":frostbite-lib",
+    ],
 )
 
 py_library(
     name = "magnetic-sling-lib",
     srcs = [
-        "magneticSling.py"
+        "magneticSling.py",
     ],
     visibility = ["//visibility:public"],
     deps = [
@@ -127,28 +127,28 @@ py_library(
         "//mcSim/systems:crit-system-lib",
         "//mcSim/systems:roll-bonus-system-lib",
         "//mcSim/systems:roll-system-lib",
-        "//mcSim/systems:summarize-system-lib",
         "//mcSim/systems:success-fail-system-lib",
+        "//mcSim/systems:summarize-system-lib",
         "//mcSim/systems:threshold-reroll-system-lib",
-        "//mcSim/util:report-writer-lib"
-    ]
+        "//mcSim/util:report-writer-lib",
+    ],
 )
 
 py_binary(
     name = "magnetic-sling-sim",
     srcs = [
-        "magneticSling.py"
+        "magneticSling.py",
     ],
     main = "magneticSling.py",
     deps = [
-        ":magnetic-sling-lib"
-    ]
+        ":magnetic-sling-lib",
+    ],
 )
 
 py_library(
     name = "radiantflash-lib",
     srcs = [
-        "radiantflash.py"
+        "radiantflash.py",
     ],
     visibility = ["//visibility:public"],
     deps = [
@@ -158,24 +158,24 @@ py_library(
         "//mcSim/components:mcSim-cover-lib",
         "//mcSim/components:mcSim-std-components-lib",
         "//mcSim/data:stat-data-lib",
-        "//mcSim/systems:crit-system-lib",
         "//mcSim/systems:api-report-system-lib",
+        "//mcSim/systems:crit-system-lib",
         "//mcSim/systems:roll-bonus-system-lib",
         "//mcSim/systems:roll-system-lib",
-        "//mcSim/systems:summarize-system-lib",
-        "//mcSim/systems:success-fail-system-lib",
         "//mcSim/systems:success-fail-by-margin-system-lib",
-        "//mcSim/util:report-writer-lib"
-    ]
+        "//mcSim/systems:success-fail-system-lib",
+        "//mcSim/systems:summarize-system-lib",
+        "//mcSim/util:report-writer-lib",
+    ],
 )
 
 py_binary(
     name = "radiantflash-sim",
     srcs = [
-        "radiantflash.py"
+        "radiantflash.py",
     ],
     main = "radiantflash.py",
     deps = [
-        ":radiantflash-lib"
-    ]
+        ":radiantflash-lib",
+    ],
 )

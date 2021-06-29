@@ -12,25 +12,25 @@ py_library(
 py_library(
     name = "mcSim-dice-lib",
     srcs = [
-        "dice.py"
+        "dice.py",
     ],
     visibility = ["//visibility:public"],
-    deps=[
+    deps = [
         "//ecs/components:ecs-value-component-lib",
-        "//ecs/lib:ecs-component"
-    ]
+        "//ecs/lib:ecs-component",
+    ],
 )
 
 py_library(
     name = "mcSim-general-components-lib",
     srcs = [
-        "general.py"
+        "general.py",
     ],
     visibility = ["//visibility:public"],
     deps = [
+        "//ecs/components:ecs-value-component-lib",
         "//ecs/lib:ecs-component",
-        "//ecs/components:ecs-value-component-lib"
-    ]
+    ],
 )
 
 py_library(

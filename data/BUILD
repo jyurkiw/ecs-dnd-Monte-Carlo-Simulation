@@ -1,9 +1,9 @@
 py_library(
     name = "stat-data-lib",
     srcs = [
-        "statdata.py"
+        "statdata.py",
     ],
     visibility = ["//visibility:public"],
     deps = [
-    ]
+    ],
 )
