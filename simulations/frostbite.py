@@ -52,5 +52,4 @@ def main():
         EntityManager.clear()
 
 if __name__ == '__main__':
-    from mcSim.util.writer import writeReport
-    writeReport(main())
+    main()
