@@ -55,9 +55,9 @@ class ApiReportSystem(System):
             fields = reporter(self.damageTotal, self.hits, EntityManager.count(), self.aggregateOpData)
             for field in fields:
                 self.addReportField(field.name, field.value)
-            
+        
         requests.post('http://mcsim-cluster_api_1:5000/report', {
             'spellName': self.spellName,
             'casterLevel': self.casterLevel,
             'reportData': self.reportData
-        })
+        }, headers={'Content-type': 'application/json'})

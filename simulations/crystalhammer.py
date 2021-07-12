@@ -32,25 +32,25 @@ class CrystalHammerSimulation(AttackRollSimulation):
 class CrystalHammer_3rdLevel(CrystalHammerSimulation):
     def __init__(self):
         super().__init__(ApiReportSystem())
-        self.setRollBonus(5).setDieCode(0, 4, 3)
+        self.setRollBonus(5).setDieCode(0, 4, 5)
         ArmorClassData.loadLevel3(self)
 
 class CrystalHammer_5thLevel(CrystalHammerSimulation):
     def __init__(self):
         super().__init__(ApiReportSystem())
-        self.setRollBonus(7).setDieCode(1, 4, 4)
+        self.setRollBonus(7).setDieCode(1, 4, 6)
         ArmorClassData.loadLevel5(self)
 
 class CrystalHammer_11thLevel(CrystalHammerSimulation):
     def __init__(self):
         super().__init__(ApiReportSystem())
-        self.setRollBonus(10).setDieCode(2, 4, 5)
+        self.setRollBonus(10).setDieCode(2, 4, 7)
         ArmorClassData.loadLevel11(self)
 
 class CrystalHammer_17thLevel(CrystalHammerSimulation):
     def __init__(self):
         super().__init__(ApiReportSystem())
-        self.setRollBonus(13).setDieCode(3, 4, 5)
+        self.setRollBonus(13).setDieCode(3, 4, 7)
         ArmorClassData.loadLevel17(self)
 
 def main():
