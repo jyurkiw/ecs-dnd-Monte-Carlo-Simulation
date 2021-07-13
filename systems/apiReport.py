@@ -56,7 +56,7 @@ class ApiReportSystem(System):
             for field in fields:
                 self.addReportField(field.name, field.value)
         
-        requests.post('http://mcsim-cluster_api_1:5000/report', {
+        requests.post('http://mcsim-cluster_api_1:5000/report', json = {
             'spellName': self.spellName,
             'casterLevel': self.casterLevel,
             'reportData': self.reportData

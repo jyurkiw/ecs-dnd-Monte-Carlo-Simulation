@@ -137,7 +137,5 @@ class AttackRollSimulation(Simulation):
             yield e
     
     def runSimulation(self):
-        print('running sim')
         super().runSimulation()
-        print('Running report system...')
         self.reportSystem.run()
